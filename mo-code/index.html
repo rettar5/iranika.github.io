@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body>
-    <img src="http://momoirocode.web.fc2.com/tabirako4.jpg">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="./style.css">
+  </head>
+  <body id="body">
+    <div id="view"></div>
+    <div id="footer">
+      <a id="more" onclick="morePage()">続きを表示</a>
+    </div>
+    <script src="./imageLinks.js"></script>
+    <script>
+      const LIMIT_SHOW_PAGE = 10
+      var page = 0
+      let max_image = [...Array(LIMIT_SHOW_PAGE).keys()]
+      
+      function morePage(){
+        showImage()
+
+      }
+
+      function showImage(){
+        max_image.forEach(count => {
+          $("#view").append('<img src="' + imageList[page + count] + '">')
+        })
+        page += LIMIT_SHOW_PAGE
+      }
+      window.onload = () => {
+        $("#view").html('')
+        showImage()
+      }
+    </script>
   </body>
 </html>
 
