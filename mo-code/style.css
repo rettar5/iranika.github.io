@@ -5,3 +5,7 @@ div{
 img {
 width: 60%;
 }
+a {
+ color: blue;
+ text-decoration: underline;
+}
