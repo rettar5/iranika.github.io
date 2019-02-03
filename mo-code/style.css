@@ -7,9 +7,18 @@ div{
   text-align: center;
 }
 img {
-width: 60%;
+width: 70%;
 }
+
 a {
  color: blue;
  text-decoration: underline;
 }
+
+.dock-button{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
