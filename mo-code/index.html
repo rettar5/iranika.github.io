@@ -3,33 +3,20 @@
   <head>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./w3.css">
   </head>
   <body id="body">
+      <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+    </div>
+    <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     <div id="view"></div>
     <div id="footer">
       <a id="more" onclick="morePage()">続きを表示</a>
     </div>
     <script src="./imageLinks.js"></script>
+    <script src="./mocode.js"></script>
     <script>
-      const LIMIT_SHOW_PAGE = 10
-      var page = 0
-      let max_image = [...Array(LIMIT_SHOW_PAGE).keys()]
-      
-      function morePage(){
-        showImage()
-
-      }
-
-      function showImage(){
-        max_image.forEach(count => {
-          $("#view").append('<img src="' + imageList[page + count] + '">')
-        })
-        page += LIMIT_SHOW_PAGE
-      }
-      window.onload = () => {
-        $("#view").html('')
-        showImage()
-      }
     </script>
   </body>
 </html>
