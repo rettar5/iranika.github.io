@@ -22,33 +22,6 @@ window.onload = () => {
 
 
 //sub funcions
-function addTitleToSideBar(){
-  var leftSidevarElement = document.getElementById("leftMenu")
-  var rightSidevarElement = document.getElementById("rightMenu")
-  pageData.forEach((item, index) => {
-    let addChild = `<a href="#" class="w3-bar-item w3-button" onclick="initShowImage(${index})">${index}. ${item.Title}</a>`
-    leftSidevarElement.innerHTML += addChild
-    rightSidevarElement.innerHTML += addChild
-  })
-}
-
-function initShowImage(pageNum){
-  closeLeftMenu()
-  closeRightMenu()
-  document.getElementById(VIEW_ELEMENT).innerHTML = ""
-  page = pageNum
-  showImage(pageNum)
-}
-
-function showImage(pageNum){
-  var pg = pageData[pageNum]
-  pg.ImagesUrl.forEach(img_url => {
-    document.getElementById("view").innerHTML += (`<img src="${img_url}">`)    
-  });
-}
-
-
-
 function openLeftMenu() {
   document.getElementById("leftMenu").style.display = "block";
 }
@@ -64,3 +37,31 @@ function openRightMenu() {
 function closeRightMenu() {
   document.getElementById("rightMenu").style.display = "none";
 }
+
+function addTitleToSideBar(){
+  var leftSidevarElement = document.getElementById("leftMenu")
+  var rightSidevarElement = document.getElementById("rightMenu")
+  pageData.forEach((item, index) => {
+    let addChild = `<a href="#" class="w3-bar-item w3-button" onclick="initShowImage(${index})">${index}. ${item.Title}</a>`
+    leftSidevarElement.innerHTML += addChild
+    rightSidevarElement.innerHTML += addChild
+  })
+}
+
+function initShowImage(pageNum){
+  document.getElementById(VIEW_ELEMENT).innerHTML = ""
+  page = pageNum
+  showImage(pageNum)
+  closeRightMenu()
+  closeLeftMenu()
+}
+
+function showImage(pageNum){
+  var pg = pageData[pageNum]
+  pg.ImagesUrl.forEach(img_url => {
+    document.getElementById("view").innerHTML += (`<img src="${img_url}">`)    
+  });
+}
+
+
+
