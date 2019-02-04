@@ -6,8 +6,11 @@ div{
   width: 100%;
   text-align: center;
 }
+div#view{
+  z-index: 0;
+}
 img {
-width: 70%;
+width: 100%;
 }
 
 a {
@@ -19,7 +22,11 @@ a {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
-  /*z-index: 100;*/
+  z-index: 10;
+}
+
+.w3-sidebar{
+  z-index: 20;
 }
 
 figcaption{
