@@ -33,7 +33,10 @@ function addTitleToSideBar(){
 }
 
 function initShowImage(pageNum){
+  closeLeftMenu()
+  closeRightMenu()
   document.getElementById(VIEW_ELEMENT).innerHTML = ""
+  page = pageNum
   showImage(pageNum)
 }
 
