@@ -2,11 +2,6 @@
 const id = {
   rightMenu : "rightMenu"
 }
-const elem = {
-  sidevarItem : function (index, item){
-    return `<a href="#" class="w3-bar-item w3-button" onclick="initShowImage(${index})">${index}. ${item.Title}</a>`
-  }
-}
 
 //viewer class
 class viewer {
@@ -25,8 +20,12 @@ class viewer {
   static addTitleToSideBar(elementId){
     var sidevarElement = document.getElementById(elementId)
     pageData.forEach((item, index) => {
-      let addChild = elem.sidevarItem(index, item)
+      let addChild = this.sidevarItem(index, item)
       sidevarElement.innerHTML += addChild
     })
   }
+  static sidevarItem(index, item){
+    return `<a href="#" class="w3-bar-item w3-button" onclick="initShowImage(${index})">${index}. ${item.Title}</a>`
+  }
+  
 }

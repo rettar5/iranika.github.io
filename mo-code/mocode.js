@@ -1,6 +1,6 @@
-const VIEW = {
-  VIEW_ELEMENT : "view",
-  MORE : "more",
+const elem = {
+  view : document.getElementById("view"),
+  more : document.getElementById("more"),
 }
 var page = {
   current : 0,
@@ -13,19 +13,32 @@ window.onload = () => {
   viewer.addTitleToSideBar("rightMenu")
 
   //続きを表示が押されたときの処理
-  document.getElementById( VIEW.MORE ).onclick = () => {
-    if (page.length >= page.current){
-      showHiddenImage()
-      addHiddenImage(page.current + 1)
-      page.current += 1  
+  elem.more.onclick = ()=>{
+    showMore()
+  }
+
+  var triggerMargin = 600
+  //sub funcions
+  window.addEventListener("scroll", function(){
+    //console.log(elem.more.getBoundingClientRect().top)
+    if (triggerMargin > elem.more.getBoundingClientRect().top){
+      showMore()
     }
+  })
+
+}
+
+
+function showMore(){
+  if (page.length >= page.current){
+    showHiddenImage()
+    addHiddenImage(page.current + 1)
+    page.current += 1  
   }
 }
 
-//sub funcions
-
 function initShowImage(pageNum){
-  document.getElementById(VIEW.VIEW_ELEMENT).innerHTML = ""
+  elem.view.innerHTML = ""
   addHiddenImage(pageNum)
   showHiddenImage()
   addHiddenImage(pageNum + 1)
@@ -48,7 +61,7 @@ function addHiddenImage(pageNum){
   }
   var pg = pageData[pageNum]
   pg.ImagesUrl.forEach(img_url => {
-    document.getElementById(VIEW.VIEW_ELEMENT).innerHTML += `<img class="hidden-image" src="${img_url}">`
+    elem.view.innerHTML += `<img class="hidden-image" src="${img_url}">`
   })
 }
 
