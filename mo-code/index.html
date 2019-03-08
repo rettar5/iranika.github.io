@@ -3,16 +3,13 @@
   <head>
     <link rel="stylesheet" href="./w3.css">
     <link rel="stylesheet" href="./style.css">
+    <meta charset="utf-8">
   </head>
   <body id="body">
-    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
-      <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-    </div>
     <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
-      <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+      <button onclick="viewer.closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
     </div>
-    <button class="w3-button w3-teal w3-xxxlarge w3-left dock-button" onclick="openLeftMenu()">&#9776;</button>
-    <button class="w3-button w3-teal w3-xxxlarge w3-right dock-button" onclick="openRightMenu()">&#9776;</button>
+    <button class="w3-button w3-teal w3-xxxlarge w3-right dock-button" onclick="viewer.openRightMenu()">&#9776;</button>
     <div class="mocode-header"><img class="mocode-header" src="http://momoirocode.web.fc2.com/mcbana.gif">ビューアー(仮)</div>
     <div id="view"></div>
     <div id="footer">
@@ -31,6 +28,7 @@
     </div>
     <script src="./4komaData.js"></script>
     <script src="./mocode.js"></script>
+    <script src="./viewer.js"></script>
     <script>
     </script>
   </body>
