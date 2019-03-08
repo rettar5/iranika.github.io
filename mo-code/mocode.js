@@ -1,33 +1,37 @@
 const elem = {
   view : document.getElementById("view"),
   more : document.getElementById("more"),
+  footer:document.getElementById("footer"),
 }
 var page = {
   current : 0,
   length : pageData.length -1,
 }
+var conf = {
+  isAutoShowMore : true
+}
+
 window.onload = () => {
   //document.getElementById("view").innerHTML = ""
   initShowImage(page.current)
 
   viewer.addTitleToSideBar("rightMenu")
-
+  
   //続きを表示が押されたときの処理
   elem.more.onclick = ()=>{
     showMore()
   }
 
-  var triggerMargin = 600
+  var triggerMargin = 5
   //sub funcions
   window.addEventListener("scroll", function(){
-    //console.log(elem.more.getBoundingClientRect().top)
-    if (triggerMargin > elem.more.getBoundingClientRect().top){
-      showMore()
+    //console.log(elem.footer.getBoundingClientRect().bottom)
+    if (!conf.isAutoShowMore){ return }
+    if (triggerMargin > elem.footer.getBoundingClientRect().bottom - window.innerHeight){
+      showMore()      
     }
   })
-
 }
-
 
 function showMore(){
   if (page.length >= page.current){
