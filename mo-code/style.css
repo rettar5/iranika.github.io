@@ -41,3 +41,7 @@ a {
 figcaption{
   background-color: white;
 }
+
+.hidden-image{
+  display: none;
+}
