@@ -1,54 +1,80 @@
-const VIEW = {
-  VIEW_ELEMENT : "view",
-  MORE : "more",
-}
-var page = {
-  current : 0,
-  length : pageData.length -1,
-}
+var viewer;
+
 window.onload = () => {
-  //document.getElementById("view").innerHTML = ""
-  initShowImage(page.current)
-
+  viewer = new Viewer()
+  viewer.initShowImage(viewer.page.current)
   viewer.addTitleToSideBar("rightMenu")
-
   //続きを表示が押されたときの処理
-  document.getElementById( VIEW.MORE ).onclick = () => {
-    if (page.length >= page.current){
-      showHiddenImage()
-      addHiddenImage(page.current + 1)
-      page.current += 1  
+  viewer.elem.more.onclick = () => {
+    if (viewer.page.length >= viewer.page.current){
+      viewer.showHiddenImage()
+      viewer.addHiddenImage(viewer.page.current + 1)
+      viewer.page.current += 1  
     }
   }
 }
 
-//sub funcions
 
-function initShowImage(pageNum){
-  document.getElementById(VIEW.VIEW_ELEMENT).innerHTML = ""
-  addHiddenImage(pageNum)
-  showHiddenImage()
-  addHiddenImage(pageNum + 1)
-  page.current = pageNum + 1
-  viewer.closeRightMenu()
-}
-
-function showHiddenImage(){
-  var elems = document.querySelectorAll(".hidden-image")
-  if (elems.length != 0){
-    [].forEach.call(elems,(elem) => {
-      elem.className = elem.className.replace("hidden-image", "")
-    });
+//viewer class
+class Viewer{
+  //メンバ
+  sidevarItem = function (index, item){
+    return `<a href="#" class="w3-bar-item w3-button" onclick="viewer.initShowImage(${index})">${index}. ${item.Title}</a>`
   }
-}
-
-function addHiddenImage(pageNum){
-  if (pageNum > page.length){
-    return
+  elem = {
+    rightMenu : document.getElementById("rightMenu"),
+    view : document.getElementById("view"),
+    more : document.getElementById("more"),
   }
-  var pg = pageData[pageNum]
-  pg.ImagesUrl.forEach(img_url => {
-    document.getElementById(VIEW.VIEW_ELEMENT).innerHTML += `<img class="hidden-image" src="${img_url}">`
-  })
+  page = {
+    current : 0,
+    length : 0,
+  }
+  //コンストラクタ
+  constructor(){
+    this.page.length = pageData.length -1
+    this.addTitleToSideBar(this.elem.rightMenu)
+  }
+  //メソッド
+  openRightMenu() {
+    this.elem.rightMenu.style.display = "block";
+  }
+  closeRightMenu() {
+    this.elem.rightMenu.style.display = "none";
+  }
+  
+  addTitleToSideBar(){
+    var sidevarElement = this.elem.rightMenu
+    pageData.forEach((item, index) => {
+      let addChild = this.sidevarItem(index, item)
+      sidevarElement.innerHTML += addChild
+    })
+  }
+  //ページ処理系
+  initShowImage(pageNum){
+    this.elem.view.innerHTML = ""
+    this.addHiddenImage(pageNum)
+    this.showHiddenImage()
+    this.addHiddenImage(pageNum + 1)
+    this.page.current = pageNum + 1
+    this.closeRightMenu()
+  }
+  showHiddenImage(){
+    var elems = document.querySelectorAll(".hidden-image")
+    if (elems.length != 0){
+      [].forEach.call(elems,(elem) => {
+        elem.className = elem.className.replace("hidden-image", "")
+      });
+    }
+  }
+  addHiddenImage(pageNum){
+    if (pageNum > this.page.length){
+      return
+    }
+    var pg = pageData[pageNum]
+    pg.ImagesUrl.forEach(img_url => {
+      this.elem.view.innerHTML += `<img class="hidden-image" src="${img_url}">`
+    })
+  }
 }
 
