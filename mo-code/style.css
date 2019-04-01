@@ -23,6 +23,12 @@ img.mocode-header{
   margin-left: 102px;
 }
 
+@media screen and (max-width: 900px) {
+  img.mocode-header {
+    margin-left: 0;
+  }
+}
+
 a {
   color: blue;
   text-decoration: underline;
