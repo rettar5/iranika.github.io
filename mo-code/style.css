@@ -13,19 +13,19 @@ div.mocode-header{
   z-index: 10;
   font-size: 50px;
   padding-bottom: 0%;
-  margin-left: 102px;
 }
 img {
-width: 100%;
+  width: 100%;
 }
 img.mocode-header{
-height: 80px;
-width: auto;
+  height: 80px;
+  width: auto;
+  margin-left: 102px;
 }
 
 a {
- color: blue;
- text-decoration: underline;
+  color: blue;
+  text-decoration: underline;
 }
 
 .dock-button{
